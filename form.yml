@@ -48,7 +48,7 @@ attributes:
       - ['Cycles', 'CYCLES']
   output_types:
     widget: 'select'
-    label: 'Render engine'
+    label: 'Output format'
     value: 'OPEN_EXR'
     options:
       - ['TGA', 'TGA']
