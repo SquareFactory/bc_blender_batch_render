@@ -13,7 +13,7 @@ import bpy
 import math
 
 scene = bpy.context.scene
-frames_per_node = int(math.ceil((scene.frame_end - scene.frame_start + 1)/float(<%= bc_num_slots.blank? ? 1 : bc_num_slots.to_i %>)))
+frames_per_node = int(math.ceil((scene.frame_end - scene.frame_start + 1)/float(${SLURM_JOB_NUM_NODES})))
 print(f"frames_per_node={frames_per_node}")
 END
 
@@ -35,18 +35,18 @@ end_frame=$(blender -b "<%= context.working_file %>" -P ./end_frame.py | sed -nr
 
 if [[ "$frames_per_node" -lt "$SLURM_JOB_NUM_NODES" ]]; then
   echo "The job has stopeed to avoid overconsumption."
-  echo "Please use $frames_per_node instead of <%= bc_num_slots.blank? ? 1 : bc_num_slots.to_i %> nodes."
+  echo "Please use $frames_per_node instead of ${SLURM_JOB_NUM_NODES} nodes."
   exit 1
 fi
 
 echo "$(date): Started blender"
 echo ""
 
-for node in $(seq 1 "<%= bc_num_slots.blank? ? 1 : bc_num_slots.to_i %>"); do
+for node in $(seq 1 "${SLURM_JOB_NUM_NODES}"); do
 start_frame_i=$(((node-1)*frames_per_node+start_frame))
 end_frame_i=$((node*frames_per_node+start_frame-1))
 
-if [[ node -eq "<%= bc_num_slots.blank? ? 1 : bc_num_slots.to_i %>" ]]; then
+if [[ node -eq ${SLURM_JOB_NUM_NODES} ]]; then
   end_frame_i=$end_frame
 fi
 
