@@ -1,9 +1,7 @@
 <%
-  base_url  = "/rnode/#{host}/#{port}/?tkn=#{password}"
+  base_url = session.staged_root.join("output.log")
 %>
 
-<form id="<%= form_id %>" action="<%= base_url %>" method="get" target="_blank">
-  <button class="btn btn-primary" type="submit">
-    <i class="fa fa-cogs"></i> Watch logs
-  </button>
-</form>
+<a href="<%= base_url %>" class="btn btn-primary">
+  <i class="fa fa-cogs"></i> Watch logs
+</a>
