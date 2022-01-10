@@ -6,6 +6,7 @@ form:
   - num_cores
   - mem_per_node
   - gpus_per_node
+  - output_types
   - render_engine
   - working_file
 
@@ -44,6 +45,28 @@ attributes:
       - ['Eevee', 'BLENDER_EEVEE']
       - ['Workbench', 'BLENDER_WORKBENCH']
       - ['Cycles', 'CYCLES']
+  output_types:
+    widget: 'select'
+    label: 'Render engine'
+    value: 'OPEN_EXR'
+    options:
+      - ['TGA', 'TGA']
+      - ['RAWTGA', 'RAWTGA']
+      - ['JPEG', 'JPEG']
+      - ['IRIS', 'IRIS']
+      - ['IRIZ', 'IRIZ']
+      - ['AVIRAW', 'AVIRAW']
+      - ['AVIJPEG', 'AVIJPEG']
+      - ['PNG', 'PNG']
+      - ['BMP', 'BMP']
+      - ['HDR', 'HDR']
+      - ['TIFF', 'TIFF']
+      - ['OPEN_EXR', 'OPEN_EXR']
+      - ['MPEG', 'MPEG']
+      - ['CINEON', 'CINEON']
+      - ['DPX', 'DPX']
+      - ['DDS', 'DDS']
+      - ['JP2', 'JP2']
   working_file:
     label: 'File .blend to render'
     data-filepicker: true
