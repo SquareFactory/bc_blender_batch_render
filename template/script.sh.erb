@@ -11,4 +11,13 @@ ml gentoo Blender
 echo "$(date): Started blender"
 echo ""
 output=$(dirname "<%= context.working_file %>")/out
-srun --export=ALL blender -b "<%= context.working_file %>" -o "${output}" -a -- --cycles-print-stats --cycles-device OPTIX
+
+<% if context.render_engine == "CYCLES"%>
+  <% if context.gpus_per_node > 0 %>
+    srun --export=ALL blender -E "<%= context.render_engine %>" -b "<%= context.working_file %>" -o "${output}" -a -- --cycles-print-stats --cycles-device OPTIX
+  <% else %>
+    srun --export=ALL blender -E "<%= context.render_engine %>" -b "<%= context.working_file %>" -o "${output}" -a -- --cycles-device CPU
+  <% end %>
+<% else %>
+  srun --export=ALL blender -E "<%= context.render_engine %>" -b "<%= context.working_file %>" -o "${output}" -a
+<% end %>

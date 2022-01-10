@@ -41,3 +41,10 @@ attributes:
     data-target-file-type: files # Valid values are: files, dirs, or both
     readonly: false
     help: 'Select your project directory; defaults to $HOME'
+  render_engine:
+    widget: 'Render engine'
+    value: 'CYCLES'
+    options:
+      - ['BLENDER_EEVEE', 'Eevee']
+      - ['BLENDER_WORKBENCH', 'Workbench']
+      - ['CYCLES', 'Cycles']
