@@ -1,0 +1,9 @@
+<%
+  base_url  = "/rnode/#{host}/#{port}/?tkn=#{password}"
+%>
+
+<form id="<%= form_id %>" action="<%= base_url %>" method="get" target="_blank">
+  <button class="btn btn-primary" type="submit">
+    <i class="fa fa-cogs"></i> Watch logs
+  </button>
+</form>

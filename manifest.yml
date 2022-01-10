@@ -1,0 +1,9 @@
+---
+name: Blender
+category: Apps
+subcategory: Graphics
+role: batch_connect
+description: |
+  This app will launch a [Blender] render job.
+
+  [Blender]: https://www.blender.org
