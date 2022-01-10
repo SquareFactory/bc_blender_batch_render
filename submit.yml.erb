@@ -7,6 +7,8 @@ script:
   native:
     - "-N"
     - "<%= bc_num_slots.blank? ? 1 : bc_num_slots.to_i %>"
+    - "--ntasks-per-node"
+    - "1"
     - "--cpus-per-task"
     - "<%= num_cores.blank? ? 1 : num_cores.to_i %>"
     - "--gpus-per-node"

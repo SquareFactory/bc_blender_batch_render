@@ -52,13 +52,13 @@ fi
 
 <% if context.render_engine == "CYCLES" %>
 <% if context.gpus_per_node.to_i > 0 %>
-  srun --export=ALL blender -E "<%= context.render_engine %>" -b "<%= context.working_file %>" -F "<%= context.output_types %>" -o "$(pwd)/out/frame_#####" -s "$start_frame_i" -e "$end_frame_i" -a -- --cycles-print-stats --cycles-device OPTIX &
+  srun --ntasks 1 --export=ALL blender -E "<%= context.render_engine %>" -b "<%= context.working_file %>" -F "<%= context.output_types %>" -o "$(pwd)/out/frame_#####" -s "$start_frame_i" -e "$end_frame_i" -a -- --cycles-print-stats --cycles-device OPTIX &
 <% else %>
-  srun --export=ALL blender -E "<%= context.render_engine %>" -b "<%= context.working_file %>" -F "<%= context.output_types %>" -o "$(pwd)/out/frame_#####" -s "$start_frame_i" -e "$end_frame_i" -a -- --cycles-print-stats --cycles-device CPU &
+  srun --ntasks 1 --export=ALL blender -E "<%= context.render_engine %>" -b "<%= context.working_file %>" -F "<%= context.output_types %>" -o "$(pwd)/out/frame_#####" -s "$start_frame_i" -e "$end_frame_i" -a -- --cycles-print-stats --cycles-device CPU &
 <% end %>
 
 <% else %>
-  srun --export=ALL blender -E "<%= context.render_engine %>" -b "<%= context.working_file %>" -F "<%= context.output_types %>" -o "$(pwd)/out/frame_#####" -s "$start_frame_i" -e "$end_frame_i" -a &
+  srun --ntasks 1 --export=ALL blender -E "<%= context.render_engine %>" -b "<%= context.working_file %>" -F "<%= context.output_types %>" -o "$(pwd)/out/frame_#####" -s "$start_frame_i" -e "$end_frame_i" -a &
 <% end %>
 done
 
