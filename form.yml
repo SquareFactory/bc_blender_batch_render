@@ -70,7 +70,9 @@ attributes:
       - ['JP2', 'JP2']
   working_file:
     label: 'File .blend to render'
-    data-filepicker: true
+    data-filepicker: false
+    data-show-hidden: true
+    data-target-file-pattern: \.blend$ # python files
     data-target-file-type: files # Valid values are: files, dirs, or both
     readonly: true
     help: 'Select your project directory; defaults to $HOME'
