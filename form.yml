@@ -42,7 +42,8 @@ attributes:
     readonly: false
     help: 'Select your project directory; defaults to $HOME'
   render_engine:
-    widget: 'Render engine'
+    widget: 'select'
+    label: 'Render engine'
     value: 'CYCLES'
     options:
       - ['BLENDER_EEVEE', 'Eevee']
