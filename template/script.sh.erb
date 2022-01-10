@@ -36,9 +36,9 @@ start_frame=$(blender -b "<%= context.working_file %>" -P ./start_frame.py)
 end_frame=$(blender -b "<%= context.working_file %>" -P ./end_frame.py)
 frames_per_node=$(blender -b "<%= context.working_file %>" -P ./frames_per_node.py)
 
-if (( frames_per_node < SLURM_JOB_NUM_NODES )); then
+if [[ "$frames_per_node" -lt "$SLURM_JOB_NUM_NODES" ]]; then
   echo "The job has stopeed to avoid overconsumption."
-  echo "Please use $frames instead of ${SLURM_JOB_NUM_NODES} nodes."
+  echo "Please use $frames_per_node instead of ${SLURM_JOB_NUM_NODES} nodes."
   exit 1
 fi
 
@@ -50,18 +50,18 @@ start_frame_i=$(((node-1)*frames_per_node+start_frame))
 end_frame_i=$((node*frames_per_node+start_frame-1))
 
 if [[ node -eq ${SLURM_JOB_NUM_NODES} ]]; then
-  end_frame_i=end_frame
+  end_frame_i=$end_frame
 fi
 
 <% if context.render_engine == "CYCLES" %>
 <% if context.gpus_per_node.to_i > 0 %>
-  srun --export=ALL blender -E "<%= context.render_engine %>" -b "<%= context.working_file %>" -F "<%= context.output_types %>" -o "$(pwd)/out/frame_#####" -s $start_frame_i -e $end_frame_i -a -- --cycles-print-stats --cycles-device OPTIX &
+  srun --export=ALL blender -E "<%= context.render_engine %>" -b "<%= context.working_file %>" -F "<%= context.output_types %>" -o "$(pwd)/out/frame_#####" -s "$start_frame_i" -e "$end_frame_i" -a -- --cycles-print-stats --cycles-device OPTIX &
 <% else %>
-  srun --export=ALL blender -E "<%= context.render_engine %>" -b "<%= context.working_file %>" -F "<%= context.output_types %>" -o "$(pwd)/out/frame_#####" -s $start_frame_i -e $end_frame_i -a -- --cycles-print-stats --cycles-device CPU &
+  srun --export=ALL blender -E "<%= context.render_engine %>" -b "<%= context.working_file %>" -F "<%= context.output_types %>" -o "$(pwd)/out/frame_#####" -s "$start_frame_i" -e "$end_frame_i" -a -- --cycles-print-stats --cycles-device CPU &
 <% end %>
 
 <% else %>
-  srun --export=ALL blender -E "<%= context.render_engine %>" -b "<%= context.working_file %>" -F "<%= context.output_types %>" -o "$(pwd)/out/frame_#####" -s $start_frame_i -e $end_frame_i -a &
+  srun --export=ALL blender -E "<%= context.render_engine %>" -b "<%= context.working_file %>" -F "<%= context.output_types %>" -o "$(pwd)/out/frame_#####" -s "$start_frame_i" -e "$end_frame_i" -a &
 <% end %>
 done
 
