@@ -11,4 +11,4 @@ ml gentoo Blender
 echo "$(date): Started blender"
 echo ""
 output=$(dirname "<%= context.working_file %>")/out
-srun blender -b "<%= context.working_file %>" -o "${output}" -a -- --cycles-print-stats --cycles-device OPTIX
+srun --export=ALL blender -b "<%= context.working_file %>" -o "${output}" -a -- --cycles-print-stats --cycles-device OPTIX
