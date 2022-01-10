@@ -13,28 +13,25 @@ import bpy
 import math
 
 scene = bpy.context.scene
-print(int(math.ceil((scene.frame_end - scene.frame_start + 1)/float(${SLURM_JOB_NUM_NODES}))))
+frames_per_node = int(math.ceil((scene.frame_end - scene.frame_start + 1)/float(${SLURM_JOB_NUM_NODES})))
+print(f"frames_per_node={frames_per_node}")
 END
 
-cat << END > ./start_frame.py
+cat << 'END' > ./start_frame.py
 import bpy
-import math
 
-scene = bpy.context.scene
-print(scene.frame_start)
+print(f"start_frame={bpy.context.scene.frame_start}")
 END
 
-cat << END > ./end_frame.py
+cat << 'END' > ./end_frame.py
 import bpy
-import math
 
-scene = bpy.context.scene
-print(scene.frame_end)
+print(f"end_frame={bpy.context.scene.frame_end}")
 END
 
-start_frame=$(blender -b "<%= context.working_file %>" -P ./start_frame.py)
-end_frame=$(blender -b "<%= context.working_file %>" -P ./end_frame.py)
-frames_per_node=$(blender -b "<%= context.working_file %>" -P ./frames_per_node.py)
+frames_per_node=$(blender -b "<%= context.working_file %>" -P ./frames_per_node.py | sed -nr 's/frames_per_node=(.*)/\1/g')
+start_frame=$(blender -b "<%= context.working_file %>" -P ./start_frame.py | sed -nr 's/start_frame=(.*)/\1/g')
+end_frame=$(blender -b "<%= context.working_file %>" -P ./end_frame.py | sed -nr 's/end_frame=(.*)/\1/g')
 
 if [[ "$frames_per_node" -lt "$SLURM_JOB_NUM_NODES" ]]; then
   echo "The job has stopeed to avoid overconsumption."
