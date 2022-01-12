@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-set -ex
+set -e
 
 # Print compute node.
 echo "$(date): Running on compute node $host"
 
 . $LMOD_PKG/init/sh
 ml purge
-ml gentoo Blender OpenEXR
+ml gentoo "Blender/<%= context.blender_version %>" OpenEXR
 
 cat << END > ./frames_per_node.py
 import bpy

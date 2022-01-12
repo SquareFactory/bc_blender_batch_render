@@ -7,6 +7,7 @@ form:
   - num_cores
   - mem_per_node
   - gpus_per_node
+  - blender_version
   - output_types
   - render_engine
   - working_file
@@ -68,6 +69,13 @@ attributes:
       - ['DPX', 'DPX']
       - ['DDS', 'DDS']
       - ['JP2', 'JP2']
+  blender_version:
+    widget: 'select'
+    label: 'Version'
+    value: '3.0.0'
+    options:
+      - ['2.93.7 (LTS)', '2.93.7']
+      - ['3.0.0 (Stable)', '3.0.0']
   working_file:
     label: 'File .blend to render'
     data-filepicker: false
