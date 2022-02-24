@@ -10,14 +10,11 @@ This Batch Connect app requires the following software be installed on the
 **compute nodes** that the batch job is intended to run on (**NOT** the
 OnDemand node):
 
-- [Lmod] 6.0.1+ or any other `module purge` and `module load <modules>` based
-  CLI used to load appropriate environments within the batch job before
-  launching Code server.
-- [blender]: https://www.blender.org/
+- [Lmod] 6.0.1+ or any other `module purge` and `module load <modules>` 
+- [blender] 
 
-[openvscode server]: https://coder.com/
+[blender]: https://www.blender.org/
 [lmod]: https://www.tacc.utexas.edu/research-development/tacc-projects/lmod
-[vs code]: https://code.visualstudio.com/
 
 ## Install
 
