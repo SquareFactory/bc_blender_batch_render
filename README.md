@@ -1,10 +1,8 @@
-# Batch Connect - Blender Renderer
+# Batch Connect - Blender Batch Renderer
 
 ![GitHub Release](https://img.shields.io/github/release/csquare-ai/bc_osc_codeserver.svg)
 
-An improved file viewer / editor for OSC OnDemand that launches a
-Code Server within a batch job. Code Server leverages VSCode as its
-editor.
+A Batch Connect app designed for OnDemand that launches blender with multi node rendering features within an Reindeer Pizza Cluster batch job.
 
 ## Prerequisites
 
