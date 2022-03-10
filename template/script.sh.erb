@@ -6,7 +6,7 @@ echo "$(date): Running on compute node $host"
 
 . $LMOD_PKG/init/sh
 ml purge
-ml stdenv "Blender/<%= context.blender_version %>" OpenEXR
+ml stdenv "Blender/<%= context.blender_version %>"
 
 cat << END > ./frames_per_node.py
 import bpy
