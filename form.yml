@@ -72,7 +72,7 @@ attributes:
   blender_version:
     widget: 'select'
     label: 'Blender Version'
-    value: '3.0.0'
+    value: '3.1.0'
     options:
       - ['2.93.7 (LTS)', '2.93.7']
       - ['3.0.0', '3.0.0']
