@@ -1,6 +1,4 @@
 ---
-cluster: 'reindeerpizza'
-
 form:
   - bc_num_hours
   - bc_num_slots
