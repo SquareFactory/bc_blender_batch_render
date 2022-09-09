@@ -2,7 +2,7 @@
 
 ![GitHub Release](https://img.shields.io/github/release/csquare-ai/bc_osc_codeserver.svg)
 
-A Batch Connect app designed for OnDemand that launches blender with multi node rendering features within an Reindeer Pizza Cluster batch job.
+A Batch Connect app designed for OnDemand that launches blender with multi node rendering features within an cluster batch job.
 
 ## Prerequisites
 
@@ -10,8 +10,8 @@ This Batch Connect app requires the following software be installed on the
 **compute nodes** that the batch job is intended to run on (**NOT** the
 OnDemand node):
 
-- [Lmod] 6.0.1+ or any other `module purge` and `module load <modules>` 
-- [blender] 
+- [Lmod] 6.0.1+ or any other `module purge` and `module load <modules>`
+- [blender]
 
 [blender]: https://www.blender.org/
 [lmod]: https://www.tacc.utexas.edu/research-development/tacc-projects/lmod
